@@ -4,7 +4,7 @@ This project simulated a small business Active Directory (AD) environment, focus
 
 ---
 
-## ✅ Overview
+##  Overview
 
 | Item             | Details                                     |
 |------------------|---------------------------------------------|
@@ -16,9 +16,9 @@ This project simulated a small business Active Directory (AD) environment, focus
 
 ---
 
-## 🛠️ PHASE 1: AWS SETUP
+##  PHASE 1: AWS SETUP
 
-### 1️⃣ Launch EC2 Windows Server
+### Launch EC2 Windows Server
 
 - Name: `AD-DC1`
 - AMI: `Windows Server 2019 Base`
@@ -40,7 +40,7 @@ This project simulated a small business Active Directory (AD) environment, focus
  
 ---
 
-### 2️⃣ Connect to Server (RDP)
+### Connect to Server (RDP)
 
 #### Mac Instructions:
 
@@ -51,14 +51,14 @@ This project simulated a small business Active Directory (AD) environment, focus
 
 
 ---
-## 🛠️ PHASE 2: Server Configuration
+##  PHASE 2: Server Configuration
 
-### 3️⃣ Rename Computer
+###  Rename Computer
 ```powershell
 Rename-Computer -NewName "AD-DC1" -Restart
 ```
 
-#### 4️⃣ Install Active Directory Domain Services (AD DS)
+####  Install Active Directory Domain Services (AD DS)
 
 **Steps:**
 
@@ -73,7 +73,7 @@ Rename-Computer -NewName "AD-DC1" -Restart
 
 ---
 
-#### 5️⃣ Promote Server to Domain Controller
+####  Promote Server to Domain Controller
 
 **Steps:**
 
@@ -103,11 +103,11 @@ Rename-Computer -NewName "AD-DC1" -Restart
 
 --- 
 
-## 🏗️ PHASE 3: Build Active Directory Help Desk Environment
+## PHASE 3: Build Active Directory Help Desk Environment
 
 ---
 
-### 6️⃣ Create Organizational Units (OUs)
+###  Create Organizational Units (OUs)
 
 **Tool:** Active Directory Users and Computers (ADUC)
 
@@ -121,7 +121,7 @@ Rename-Computer -NewName "AD-DC1" -Restart
    - `HR`
    - `Security`
 
-> ✅ Tip: Make sure “Protect container from accidental deletion” is checked for each OU.
+> Tip: Make sure “Protect container from accidental deletion” is checked for each OU.
 
 
 <p align="center">
@@ -135,7 +135,7 @@ Rename-Computer -NewName "AD-DC1" -Restart
 
 ---
 
-### 7️⃣ Create 10 Sample Users
+###  Create 10 Sample Users
 
 **Tool:** PowerShell (Run as Administrator on the Domain Controller)
 
@@ -173,16 +173,16 @@ foreach ($u in $users) {
 </p>
 
 
-> 🔐 Note: All users will be created with the password: `P@ssw0rd123` and placed in their respective OUs.
+> Note: All users will be created with the password: `P@ssw0rd123` and placed in their respective OUs.
 
 
-### 8️⃣ Create Groups and Assign Roles
+###  Create Groups and Assign Roles
 
-**🛠️ Tool:** Active Directory Users and Computers (ADUC)
+**Tool:** Active Directory Users and Computers (ADUC)
 
 ---
 
-#### 📌 Steps:
+####  Steps:
 
 1. Open **Active Directory Users and Computers (ADUC)**
 2. Navigate to your domain (e.g., `corp.local`)
@@ -221,16 +221,16 @@ foreach ($u in $users) {
 
 ---
 
-> 💡 **Note:** Group memberships help simplify permissions and access control management for shared resources like files, folders, printers, and Group Policy applications.
+>  **Note:** Group memberships help simplify permissions and access control management for shared resources like files, folders, printers, and Group Policy applications.
 
 ---
 
 
-## 🧰 PHASE 4: Simulate Help Desk Support Tasks
+##  PHASE 4: Simulate Help Desk Support Tasks
 
 ---
 
-### 🎟️ Ticket 1: User Onboarding
+###  Ticket 1: User Onboarding
 
 **Task:**  
 - Create new user `jallen` in the **HR** Organizational Unit.  
@@ -250,7 +250,7 @@ foreach ($u in $users) {
 
 ---
 
-### 🎟️ Ticket 2: Password Reset
+###  Ticket 2: Password Reset
 
 **Task:**  
 - Reset the password for user `blee`.
@@ -273,7 +273,7 @@ Set-ADAccountPassword -Identity blee -Reset -NewPassword (ConvertTo-SecureString
 
 ---
 
-### 🎟️ Ticket 3: Account Lockout
+###  Ticket 3: Account Lockout
 
 **Task:**  
 Unlock user `jwhite` after multiple failed login attempts.
@@ -299,7 +299,7 @@ Unlock user `jwhite` after multiple failed login attempts.
 > **Note:** For the user account, under **Reset Password**, you can see if the checkbox for **Unlock the user's account** is checked or not. If checked, hit **OK** to Unlock the account.
 ---
 
-### 🎟️ Ticket 4: Disable Control Panel via GPO for Sales
+###  Ticket 4: Disable Control Panel via GPO for Sales
 
 **Task:**  
 Disable access to the Control Panel for users in the **Sales** Organizational Unit using Group Policy.
@@ -323,7 +323,7 @@ Disable access to the Control Panel for users in the **Sales** Organizational Un
 
 ---
 
-> 💡 **Note:** Disabling Control Panel access helps enforce security policies and prevent unauthorized configuration changes on workstations, especially in non-IT departments like Sales.
+>  **Note:** Disabling Control Panel access helps enforce security policies and prevent unauthorized configuration changes on workstations, especially in non-IT departments like Sales.
 ---
 
 
